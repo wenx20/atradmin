@@ -1,0 +1,11 @@
+Data Master :
+	Format Data Pegawai ? sudah tersedia atau belum ? 
+	( maksudnya kita harus sediakan entri pegawai juga diaplikasi saya atau jika sudah ada
+		apakah bisa di informasikan struktur database pegawai yg sudah ada ) ?
+
+Loket Pemberkasan :
+	Jenis Permohonan Apa Saja ?
+	Kelengkapan Berkas Penunjang ? berkas yg dimaksud apa saja ?
+
+Loket Administrasi :
+	Hitung Biaya ( info rumusnya / formula hitungan nya ) ?

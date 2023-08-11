@@ -1,0 +1,10 @@
+dat_loket_berkas :
+id
+nm_perusahaan
+luas_permohonan
+provinsi
+kabupaten
+status_telaah ( Sudah / Belum )
+penelaah
+jns_permohonan
+status_berkas (Lengkap / TLengkap)
