@@ -1,25 +1,35 @@
 <div class="page-content">
     <div class="page-header">
         <h1>
-            Data Pemberkasan
+            Loket
             <small>
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                +Add
+                Data Pemberkasan
             </small>
         </h1>
     </div><!-- /.page-header -->
 
     <div class="row">
         <div class="col-xs-12">
-            <div class="clearfix">
+            <div class="clearfix" style="margin-bottom: 5px;">
                 <a href="#modal-form" data-toggle="modal"><button class="btn btn-inverse"><i class="fa fa-plus"></i> Tambah Permohonan</button></a>
-                <!-- <a href="<?= base_url('home/regpermohonan') ?>"><button class="btn btn-inverse"><i class="fa fa-plus"></i> Tambah Permohonan</button></a> -->
-                <div class="pull-right tableTools-container"></div>
             </div>
+            <?php if ($this->session->flashdata('sukses_input')) { ?>
+                <div class="alert alert-block alert-success">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="ace-icon fa fa-times"></i>
+                    </button>
+                    <strong>
+                        <i class="ace-icon fa fa-check"></i>
+                        Well done!
+                    </strong>
+                    You successfully insert data.
+                </div>
+            <?php } ?>
             <div class="table-header">
                 Data Berkas Permohonan
             </div>
-            <table id="dynamic-table" class="table table-striped table-bordered table-hover table-responsive">
+            <table id="dynamic-table-b" class="table table-striped table-bordered table-hover table-responsive">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -43,15 +53,14 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <a class='btn btn-xs btn-info' title='Edit Data' href=''><i class='ace-icon fa fa-pencil bigger-120'></i></a>
-                                <a class='btn btn-xs btn-danger btn-hapus' title='Delete Data' href=''><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
+                                <a class='btn btn-xs btn-info' title='Edit Data' href='<?= base_url() ?>home/pstb_ed/<?= $row['id'] ?>'><i class='ace-icon fa fa-pencil bigger-120'></i></a>
+                                <a class='btn btn-xs btn-danger btn-hapus' title='Delete Data' href='./pstb_del/<?= $row['id'] ?>'><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
                             </td>
                         </tr>
                     <?php
                         $no++;
                     }
                     ?>
-
 
                 </tbody>
             </table>

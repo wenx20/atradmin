@@ -86,8 +86,7 @@
      jQuery(function($) {
          //initiate dataTables plugin
          var myTable =
-             $('#dynamic-table')
-             //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+             $('#dynamic-table-b')
              .DataTable({
                  rowReorder: {
                      selector: 'td:nth-child(2)'
@@ -97,7 +96,13 @@
                  "aaSorting": [],
                  select: {
                      style: 'multi'
-                 }
+                 },
+                 'columnDefs': [{
+                     'targets': [3, 4, 5],
+                     /* column index */
+                     'orderable': false,
+                     /* true or false */
+                 }]
              });
 
          $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';

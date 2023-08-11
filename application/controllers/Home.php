@@ -191,4 +191,30 @@ class Home extends CI_Controller
             redirect('./home/loketberkas');
         }
     }
+
+    public function pstb_ed()
+    {
+        $id = $this->uri->segment('3');
+
+        $condition         = [];
+        $data['provinsi']  = $this->mastermod->get_master_spec('ref_provinsi', '*', $condition)->result_array();
+
+        $cond = [];
+        $cond[] = ['id', $id];
+        $row = $this->mastermod->get_master_spec('tbl_pstb', '*', $cond)->row_array();
+
+        $cond = [];
+        $cond[] = ['KD_PROVINSI', $row['propinsi']];
+        $row2 = $this->mastermod->get_master_spec('ref_dati2', '*', $cond)->result();
+
+        $condition = [];
+        $condition[] = ['pstb_id', $row['id']];
+        $data['warkah'] = $this->mastermod->get_master_spec('v_pstb_warkah', '*', $condition)->result_array();
+
+
+        $data['pstb'] = $row;
+        $data['dati2'] = $row2;
+
+        $this->template->load('home/template', 'home/frmpstb_ed', $data);
+    }
 }

@@ -6,7 +6,7 @@
                 <i class="ace-icon fa fa-angle-double-right"></i>
                 Loket Pemberkasan
                 <i class="ace-icon fa fa-angle-double-right"></i>
-                Input Permohonan
+                Edit Data
             </small>
         </h1>
     </div><!-- /.page-header -->
@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label class="col-md-2">Nama Perusahaan</label>
                     <div class="col-sm-9">
-                        <input name="nm_perusahaan" type="text" id="form-field-1-1" placeholder="Nama Perusahaan" class="form-control" />
+                        <input name="nm_perusahaan" type="text" id="form-field-1-1" placeholder="Nama Perusahaan" class="form-control" value="<?= $pstb['nm_perusahaan'] ?>" />
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@
                             <option value="0">- Provinsi -</option>
                             <?php
                             foreach ($provinsi as $row) {
-                                echo '<option value="' . $row['KD_PROVINSI'] . '">' . $row['NM_PROVINSI'] . '</option>';
+                                echo '<option value="' . $row['KD_PROVINSI'] . '" ' . ($row['KD_PROVINSI'] == $pstb['propinsi'] ? 'selected' : '') . '>' . $row['NM_PROVINSI'] . '</option>';
                             }
                             ?>
                         </select>
@@ -40,7 +40,12 @@
                     <label class="col-md-2">Dati2</label>
                     <div class="col-sm-3">
                         <select name="dati2" type="text" id="dati2" class="form-control">
-                            <option value="">- Dati2 -</option>
+                            <?php
+                            foreach ($dati2 as $d) :
+                                echo '<option value="' . $d->KD_DATI2 . '" ' . ($d->KD_DATI2 == $row['dati2'] ? 'selected' : '') . '>' . $d->NM_DATI2 . '</option>';
+                            endforeach;
+                            ?>
+
                         </select>
                     </div>
                 </div>
@@ -57,30 +62,36 @@
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($kelengkapan_warkah as $berkas) :
+                        foreach ($warkah as $w) :
                         ?>
                             <tr>
                                 <td>
-                                    <input type="hidden" value="<?= $berkas['id'] ?>" name="berkasID[]">
-                                    <?= $berkas['nm_warkah'] ?>
+                                    <input type="text" value="<?= $w['id'] ?>" size="2" name="wrkID[]">
+                                    <?= $w['nm_warkah'] ?>
                                 </td>
                                 <td style="text-align: center;">
                                     <label>
-                                        <input class="ace ace-switch ace-switch-6" onclick="stsberkas(<?= $berkas['id'] ?>)" type="checkbox" />
+                                        <input class="ace ace-switch ace-switch-6" onclick="stsberkas(<?= $w['ref_pstb_id'] ?>)" type="checkbox" <?= ($w['sts_warkah'] == 1 ? 'checked' : '') ?> />
                                         <span class="lbl"></span>
-                                        <input type="hidden" size="2" name="stsberkas[]" id="stsberkas<?= $berkas['id'] ?>" value="0" readonly>
+                                        <input type="text" size="2" name="stsberkas[]" id="stsberkas<?= $w['ref_pstb_id'] ?>" value="<?= $w['sts_warkah'] ?>" readonly>
                                     </label>
                                 </td>
                                 <td align="center">
-                                    <input type="checkbox" class="ace input-lg sftcopy" data-id="<?= $berkas['id'] ?>" />
+                                    <input type="checkbox" class="ace input-lg sftcopy" data-id="<?= $w['ref_pstb_id'] ?>" />
                                     <span class="lbl bigger-120"></span>
-                                    <input type="hidden" size="2" name="sftcopy[]" id="scval<?= $berkas['id'] ?>" value="0" readonly>
+                                    <input type="text" size="2" name="sftcopy[]" id="scval<?= $w['ref_pstb_id'] ?>" value="<?= $w['sts_sftcopy'] ?>" readonly>
                                 </td>
                                 <td>
-                                    <input type="file" id="id-input-file-2" name="scFile<?= $berkas['id'] ?>" />
+                                    <?php
+                                    if ($w['sts_sftcopy'] == 1) :
+                                        echo "[<a href=''>Lihat File</a>]";
+                                    endif;
+                                    ?>
+
+                                    <input type="file" id="id-input-file-2" name="scFile<?= $w['ref_pstb_id'] ?>" />
                                 </td>
 
-                                <td><textarea class="form-control" id="form-field-8" placeholder="Keterangan" name="keterangan[]"></textarea></td>
+                                <td><textarea class="form-control" id="form-field-8" placeholder="Keterangan" name="keterangan[]"><?= $w['keterangan'] ?></textarea></td>
                             </tr>
                         <?php
                         endforeach;
@@ -88,26 +99,6 @@
 
                     </tbody>
                 </table>
-
-                <!-- 
-                    <div class="form-group">
-                    <label class="col-md-2">Kecamatan</label>
-                    <div class="col-sm-9">
-                        <select name="kec" id="kecamatan" class="form-control">
-                            <option>- kecamatan -</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-2">Kelurahan</label>
-                    <div class="col-sm-9">
-                        <select name="kel" type="text" id="kelurahan" class="form-control">
-                            <option>- Kelurahan -</option>
-                        </select>
-                    </div>
-                </div>
-                        -->
 
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">

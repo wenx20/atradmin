@@ -52,7 +52,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="">
+                <li class="active">
                     <a href="<?= base_url('home/loketberkas') ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Loket Pemberkasan
@@ -70,7 +70,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="active">
+                <li class="">
                     <a href="<?= base_url('home/loketarsip') ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Loket Pengarsipan
@@ -81,48 +81,7 @@
             </ul>
         </li>
 
-        <li class="">
 
-            <a href="#" style="background-color: #000;">
-                <i class="menu-icon fa fa-tag"></i>
-                <span class="menu-text"> Administrator </span>
-            </a>
-
-        </li>
-
-        <li class="active open">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-gears"></i>
-
-                <span class="menu-text">
-                    Data Master
-                </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="">
-                    <a href="<?= base_url('home/datpegawai') ?>">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Master Pegawai
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="<?= base_url('home/datuser') ?>">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Data User
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li>
     </ul><!-- /.nav-list -->
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
