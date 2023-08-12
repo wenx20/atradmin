@@ -19,11 +19,7 @@
                     <button type="button" class="close" data-dismiss="alert">
                         <i class="ace-icon fa fa-times"></i>
                     </button>
-                    <strong>
-                        <i class="ace-icon fa fa-check"></i>
-                        Well done!
-                    </strong>
-                    You successfully insert data.
+                    <?= $this->session->flashdata('sukses_input') ?>
                 </div>
             <?php } ?>
             <div class="table-header">
@@ -36,6 +32,7 @@
                         <th>Tgl. Input</th>
                         <th>Nama Perusahaan </th>
                         <th>Kelengkapan Warkah</th>
+                        <th>Jenis Permohonan</th>
                         <th>Status Permohonan</th>
                         <th>Action</th>
                     </tr>
@@ -50,11 +47,12 @@
                             <td><?= $no ?></td>
                             <td><?= $row['created_date'] ?></td>
                             <td><?= $row['nm_perusahaan'] ?></td>
-                            <td></td>
-                            <td></td>
+                            <td><?= $row['is_complete'] ?></td>
+                            <td><?= ($row['jns_permohonan'] == 1 ? 'Baru' : 'Perpanjangan') ?></td>
+                            <td><?= $row['sts_permohonan'] ?></td>
                             <td>
                                 <a class='btn btn-xs btn-info' title='Edit Data' href='<?= base_url() ?>home/pstb_ed/<?= $row['id'] ?>'><i class='ace-icon fa fa-pencil bigger-120'></i></a>
-                                <a class='btn btn-xs btn-danger btn-hapus' title='Delete Data' href='./pstb_del/<?= $row['id'] ?>'><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
+                                <a class='btn btn-xs btn-danger btn-hapus' title='Delete Data' onclick="return confirm('Apakah anda yakin?')" href='./pstb_del/<?= $row['id'] ?>'><i class='ace-icon fa fa-trash-o bigger-120'></i></a>
                             </td>
                         </tr>
                     <?php
@@ -81,12 +79,12 @@
             <div class="modal-body">
                 <div class="row" align="center">
 
-                    <a href="<?= base_url('home/pstbaru') ?>" class="btn btn-primary">
+                    <a href="<?= base_url('home/permohonan/1') ?>" class="btn btn-primary">
                         <i class="ace-icon fa fa-edit bigger-230"></i>
                         Permohonan Baru
                     </a>
-                    <a href="<?= base_url('home/pstperpanjangan') ?>" class="btn btn-danger">
-                        <i class="ace-icon fa fa-refresh bigger-230"></i>
+                    <a href="<?= base_url('home/permohonan/2') ?>" class="btn btn-danger">
+                        <i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
                         Permohonan Perpanjangan
                     </a>
 

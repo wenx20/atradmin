@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MariaDB dump 10.18  Distrib 10.4.17-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: atradmindb
+-- Host: localhost    Database: atradmin
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	10.4.17-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,17 +21,18 @@
 
 DROP TABLE IF EXISTS `dat_login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dat_login` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
   `nip` varchar(21) NOT NULL,
   `leveluser` varchar(30) NOT NULL DEFAULT 'user',
   `blokir` char(1) DEFAULT 'Y',
   PRIMARY KEY (`id`),
   UNIQUE KEY `nip` (`nip`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `dat_login` (
 
 LOCK TABLES `dat_login` WRITE;
 /*!40000 ALTER TABLE `dat_login` DISABLE KEYS */;
-INSERT INTO `dat_login` VALUES (1,'admin','$2y$10$TVNIdjTGIw8LjeG8uv36zu35XeqMymBEKyCmUBhTf4JXq0qqFZC0G','00000000 000000 1 001','admin','N'),(2,'pst','$2y$10$TVNIdjTGIw8LjeG8uv36zu35XeqMymBEKyCmUBhTf4JXq0qqFZC0G','','user','Y');
+INSERT INTO `dat_login` VALUES (1,'admin','$2y$10$TVNIdjTGIw8LjeG8uv36zu35XeqMymBEKyCmUBhTf4JXq0qqFZC0G','Administrator','00000000 000000 1 001','admin','N'),(2,'pst','$2y$10$TVNIdjTGIw8LjeG8uv36zu35XeqMymBEKyCmUBhTf4JXq0qqFZC0G','','','user','Y');
 /*!40000 ALTER TABLE `dat_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,16 +51,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dat_pegawai`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dat_pegawai` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
   `nip` varchar(21) NOT NULL,
   `golongan` varchar(5) NOT NULL,
   `ruang` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nip` (`nip`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,14 +79,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dat_pengantar`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dat_pengantar` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `no_pengantar` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `no_pengantar` int(11) NOT NULL,
   `tgl_pengantar` date NOT NULL,
   `hal_pengantar` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,15 +104,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dat_permohonan`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dat_permohonan` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `no_permohonan` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `no_permohonan` int(11) NOT NULL,
   `tgl_permohonan` date NOT NULL,
   `hal_permohonan` text NOT NULL,
   `jns_permohonan` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,9 +130,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dat_pstb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dat_pstb` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `no_permohonan` varchar(21) NOT NULL,
   `no_pengantar` varchar(21) NOT NULL,
   `jns_permohonan` varchar(50) NOT NULL,
@@ -139,34 +140,34 @@ CREATE TABLE `dat_pstb` (
   `luas_permohonan` float NOT NULL,
   `provinsi` varchar(50) NOT NULL,
   `dati2` varchar(50) NOT NULL,
-  `pstb001` varchar(1) NOT NULL,
-  `pstb002` varchar(1) NOT NULL,
-  `pstb003` varchar(1) NOT NULL,
-  `pstb004` varchar(1) NOT NULL,
-  `pstb005` varchar(1) NOT NULL,
-  `pstb006` varchar(1) NOT NULL,
-  `pstb007` varchar(1) NOT NULL,
-  `pstb008` varchar(1) NOT NULL,
-  `pstb009` varchar(1) NOT NULL,
-  `pstb010` varchar(1) NOT NULL,
-  `pstb011` varchar(1) NOT NULL,
-  `pstb012` varchar(1) NOT NULL,
-  `pstb013` varchar(1) NOT NULL,
-  `pstb014` varchar(1) NOT NULL,
-  `pstb015` varchar(1) NOT NULL,
-  `pstb016` varchar(1) NOT NULL,
-  `pstb017` varchar(1) NOT NULL,
-  `pstb018` varchar(1) NOT NULL,
-  `softcopy` varchar(1) NOT NULL,
+  `pstb001` int(1) NOT NULL DEFAULT 0,
+  `pstb002` int(1) NOT NULL DEFAULT 0,
+  `pstb003` int(1) NOT NULL DEFAULT 0,
+  `pstb004` int(1) NOT NULL DEFAULT 0,
+  `pstb005` int(1) NOT NULL DEFAULT 0,
+  `pstb006` int(1) NOT NULL DEFAULT 0,
+  `pstb007` int(1) NOT NULL DEFAULT 0,
+  `pstb008` int(1) NOT NULL DEFAULT 0,
+  `pstb009` int(1) NOT NULL DEFAULT 0,
+  `pstb010` int(1) NOT NULL DEFAULT 0,
+  `pstb011` int(1) NOT NULL DEFAULT 0,
+  `pstb012` int(1) NOT NULL DEFAULT 0,
+  `pstb013` int(1) NOT NULL DEFAULT 0,
+  `pstb014` int(1) NOT NULL DEFAULT 0,
+  `pstb015` int(1) NOT NULL DEFAULT 0,
+  `pstb016` int(1) NOT NULL DEFAULT 0,
+  `pstb017` int(1) NOT NULL DEFAULT 0,
+  `pstb018` int(1) NOT NULL DEFAULT 0,
+  `softcopy` int(1) NOT NULL DEFAULT 0,
   `scfilename` varchar(255) NOT NULL,
-  `status_telaah` varchar(1) NOT NULL,
+  `status_telaah` int(11) NOT NULL DEFAULT 0,
   `penelaah` varchar(50) NOT NULL,
-  `status_berkas` varchar(1) NOT NULL,
-  `tgl_pemeriksaan` date NOT NULL,
+  `status_berkas` int(11) NOT NULL DEFAULT 0,
+  `tgl_pemeriksaan` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `no_permohonan` (`no_permohonan`),
   UNIQUE KEY `no_pengantar` (`no_pengantar`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,12 +185,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ref_dati2`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ref_dati2` (
   `KD_PROVINSI` char(2) DEFAULT NULL,
   `KD_DATI2` char(4) DEFAULT NULL,
   `NM_DATI2` char(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,16 +204,69 @@ INSERT INTO `ref_dati2` VALUES ('61','6108','LANDAK'),('61','6109','SEKADAU'),('
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ref_jns_permohonan`
+--
+
+DROP TABLE IF EXISTS `ref_jns_permohonan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ref_jns_permohonan` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `jns_permohonan` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ref_jns_permohonan`
+--
+
+LOCK TABLES `ref_jns_permohonan` WRITE;
+/*!40000 ALTER TABLE `ref_jns_permohonan` DISABLE KEYS */;
+INSERT INTO `ref_jns_permohonan` VALUES (1,'Baru'),(2,'Perpanjangan');
+/*!40000 ALTER TABLE `ref_jns_permohonan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ref_permohonan_berkas`
+--
+
+DROP TABLE IF EXISTS `ref_permohonan_berkas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ref_permohonan_berkas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(10) NOT NULL,
+  `nm_warkah` varchar(255) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `scfile` int(1) NOT NULL DEFAULT 1,
+  `jns_permohonan` int(1) DEFAULT NULL,
+  `sts` int(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ref_permohonan_berkas`
+--
+
+LOCK TABLES `ref_permohonan_berkas` WRITE;
+/*!40000 ALTER TABLE `ref_permohonan_berkas` DISABLE KEYS */;
+INSERT INTO `ref_permohonan_berkas` VALUES (1,'PSTB001','Surat Pengantar dari Kanwil','',1,1,1),(2,'PSTB002','Surat Permohonan Pengukuran dari Perusahaan','',1,1,1),(3,'PSTB003','Ijin Lokasi atau KKPR yang masih berlaku','',1,1,1),(4,'PSTB004','Peta Lampiran Ijin Lokasi atau KKPR','',1,1,1),(5,'PSTB005','Izin pelepasan Kawasan Hutan','',1,1,1),(6,'PSTB006','Peta Pelepasan Kawasan Hutan','',1,1,1),(7,'PSTB007','Peta permohonan Pengukuran*)','',1,1,1),(8,'PSTB008','Peta Telaah permohonan dari Kantor Wilayah Badan Pertanahan Nasional*)','',1,1,1),(9,'PSTB009','Akta pendirian perusahaan','',1,1,1),(10,'PSTB010','Fotocopy KTP Pemilik/Direktur Perusahaan','',1,1,1),(11,'PSTB011','Surat Pernyataan Tidak Sengketa','',1,1,1),(12,'PSTB012','Surat Pernyataan Pemasangan Tanda Batas dan Persetujuan Pemilik Yang Berbatasan','',1,1,1),(13,'PSTB013','Daftar Koordinat Tugu Batas Yang dipasang*)','',1,1,1),(14,'PSTB014','Izin Usaha Perkebunan Yang Masih Berlaku','',1,1,1),(15,'PSTB015','Rekapitulasi Perolehan lahan yang telah disahkan oleh pemerintah desa dan bermaterai','',1,1,1),(16,'PSTB016','Peta Perolehan Lahan Sesuai Izin Lokasi*)','',1,1,1),(17,'PSTB017','Surat Pernyataan Penguasan Fisik Bidang Tanah','',1,1,1),(18,'PSTB018','Nomor Telepon dan email Pemohon','',0,1,1),(19,'PSTP001','Surat Pengantar dari Kanwil','',1,2,1),(20,'PSTP002','Surat Permohonan Pengukuran dari Perusahaan','',1,2,1),(21,'PSTP003','Copy Sertifikat sesuau dengan Aslinya','',1,2,1),(22,'PSTB004','Gambar Situasi/PGSK atau Peta Lampiran Surat Ukur','',1,2,1),(23,'PSTP005','Izin Pelepasan Kawasan Hutan','',1,2,1),(24,'PSTP006','Peta Pelepasan Kawasan Hutan','',1,2,1),(25,'PSTP007','Peta Permohonan Pengukuran *)','',1,2,1),(26,'PSTP008','Peta Telaah permohonan dari Kantor Wilayah Badan Pertanahan Nasional *)','',1,2,1),(27,'PSTP009','Akta pendirian perusahaan','',1,2,1),(28,'PSTP010','Fotocopy KTP Pemilik/Direktur Perusahaan','',1,2,1),(29,'PSTP011','Surat Pernyataan Tidak Sengketa','',1,2,1),(30,'PSTP012','Surat Pernyataan Pemasangan Tanda Batas dan Persetujuan Pemilik Yang Berbatasan','',1,2,1),(31,'PSTP013','Daftar Koordinat Tugu Batas Yang dipasang *)','',1,2,1),(32,'PSTP014','Izin Usaha Perkebunan Yang Masih Berlaku','',1,2,1),(33,'PSTP015','Surat Pernyataan Penguasaan Fisik Bidang Tanah','',1,2,1),(34,'PSTP016','SKPT','',1,2,1),(35,'PSTP017','Nomor Telepon dan email Pemohon','',0,2,1);
+/*!40000 ALTER TABLE `ref_permohonan_berkas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ref_provinsi`
 --
 
 DROP TABLE IF EXISTS `ref_provinsi`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ref_provinsi` (
   `KD_PROVINSI` char(2) DEFAULT NULL,
   `NM_PROVINSI` char(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,15 +285,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ref_pstb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ref_pstb` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `kd_pstb` varchar(10) NOT NULL,
-  `nm_lwarkah` varchar(255) NOT NULL,
-  `keterangan` text NOT NULL,
+  `nm_warkah` varchar(255) NOT NULL,
+  `sts` int(1) NOT NULL DEFAULT 1,
+  `scfile` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `kd_pstb` (`kd_pstb`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,9 +303,146 @@ CREATE TABLE `ref_pstb` (
 
 LOCK TABLES `ref_pstb` WRITE;
 /*!40000 ALTER TABLE `ref_pstb` DISABLE KEYS */;
-INSERT INTO `ref_pstb` VALUES (1,'PSTB001','Surat Pengantar dari Kanwil',''),(2,'PSTB002','Surat Permohonan Pengukuran dari Perusahaan',''),(3,'PSTB003','Ijin Lokasi atau KKPR yang masih berlaku',''),(4,'PSTB004','Peta Lampiran Ijin Lokasi atau KKPR',''),(5,'PSTB005','Izin pelepasan Kawasan Hutan',''),(6,'PSTB006','Peta Pelepasan Kawasan Hutan',''),(7,'PSTB007','Peta permohonan Pengukuran*)',''),(8,'PSTB008','Peta Telaah permohonan dari Kantor Wilayah Badan Pertanahan Nasional*)',''),(9,'PSTB009','Akta pendirian perusahaan',''),(10,'PSTB010','Fotocopy KTP Pemilik/Direktur Perusahaan',''),(11,'PSTB011','Surat Pernyataan Tidak Sengketa',''),(12,'PSTB012','Surat Pernyataan Pemasangan Tanda Batas dan Persetujuan Pemilik Yang Berbatasan',''),(13,'PSTB013','Daftar Koordinat Tugu Batas Yang dipasang*)',''),(14,'PSTB014','Izin Usaha Perkebunan Yang Masih Berlaku',''),(15,'PSTB015','Rekapitulasi Perolehan lahan yang telah disahkan oleh pemerintah desa dan bermaterai',''),(16,'PSTB016','Peta Perolehan Lahan Sesuai Izin Lokasi*)',''),(17,'PSTB017','Surat Pernyataan Penguasan Fisik Bidang Tanah',''),(18,'PSTB018','Nomor Telepon dan email Pemohon','');
+INSERT INTO `ref_pstb` VALUES (1,'PSTB001','Surat Pengantar dari Kanwil',1,1),(2,'PSTB002','Surat Permohonan Pengukuran dari Perusahaan',1,1),(3,'PSTB003','Ijin Lokasi atau KKPR yang masih berlaku',1,1),(4,'PSTB004','Peta Lampiran Ijin Lokasi atau KKPR',1,1),(5,'PSTB005','Izin pelepasan Kawasan Hutan',1,1),(6,'PSTB006','Peta Pelepasan Kawasan Hutan',1,1),(7,'PSTB007','Peta permohonan Pengukuran*)',1,1),(8,'PSTB008','Peta Telaah permohonan dari Kantor Wilayah Badan Pertanahan Nasional*)',1,1),(9,'PSTB009','Akta pendirian perusahaan',1,1),(10,'PSTB010','Fotocopy KTP Pemilik/Direktur Perusahaan',1,1),(11,'PSTB011','Surat Pernyataan Tidak Sengketa',1,1),(12,'PSTB012','Surat Pernyataan Pemasangan Tanda Batas dan Persetujuan Pemilik Yang Berbatasan',1,1),(13,'PSTB013','Daftar Koordinat Tugu Batas Yang dipasang*)',1,1),(14,'PSTB014','Izin Usaha Perkebunan Yang Masih Berlaku',1,1),(15,'PSTB015','Rekapitulasi Perolehan lahan yang telah disahkan oleh pemerintah desa dan bermaterai',1,1),(16,'PSTB016','Peta Perolehan Lahan Sesuai Izin Lokasi*)',1,1),(17,'PSTB017','Surat Pernyataan Penguasan Fisik Bidang Tanah',1,1),(18,'PSTB018','Nomor Telepon dan email Pemohon',1,0);
 /*!40000 ALTER TABLE `ref_pstb` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `ref_pstp`
+--
+
+DROP TABLE IF EXISTS `ref_pstp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ref_pstp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kd_pstp` varchar(10) NOT NULL,
+  `nm_warkah` varchar(255) NOT NULL,
+  `keterangan` varchar(250) NOT NULL DEFAULT '',
+  `scfile` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kd_pstbaru` (`kd_pstp`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ref_pstp`
+--
+
+LOCK TABLES `ref_pstp` WRITE;
+/*!40000 ALTER TABLE `ref_pstp` DISABLE KEYS */;
+INSERT INTO `ref_pstp` VALUES (1,'PSTP001','Surat Pengantar dari Kanwil','',1,1),(2,'PSTP002','Surat Permohonan Pengukuran dari Perusahaan','',1,1),(3,'PSTP003','Copy Sertifikat sesuau dengan Aslinya','',1,1),(4,'PSTB004','Gambar Situasi/PGSK atau Peta Lampiran Surat Ukur','',1,1),(5,'PSTP005','Izin Pelepasan Kawasan Hutan','',1,1),(6,'PSTP006','Peta Pelepasan Kawasan Hutan','',1,1),(7,'PSTP007','Peta Permohonan Pengukuran *)','',1,1),(8,'PSTP008','Peta Telaah permohonan dari Kantor Wilayah Badan Pertanahan Nasional *)','',1,1),(9,'PSTP009','Akta pendirian perusahaan','',1,1),(10,'PSTP010','Fotocopy KTP Pemilik/Direktur Perusahaan','',1,1),(11,'PSTP011','Surat Pernyataan Tidak Sengketa','',1,1),(12,'PSTP012','Surat Pernyataan Pemasangan Tanda Batas dan Persetujuan Pemilik Yang Berbatasan','',1,1),(13,'PSTP013','Daftar Koordinat Tugu Batas Yang dipasang *)','',1,1),(14,'PSTP014','Izin Usaha Perkebunan Yang Masih Berlaku','',1,1),(15,'PSTP015','Surat Pernyataan Penguasaan Fisik Bidang Tanah','',1,1),(16,'PSTP016','SKPT','',1,1),(17,'PSTP017','Nomor Telepon dan email Pemohon','',0,1);
+/*!40000 ALTER TABLE `ref_pstp` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_permohonan_berkas`
+--
+
+DROP TABLE IF EXISTS `t_permohonan_berkas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_permohonan_berkas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permohonan_id` int(10) DEFAULT NULL,
+  `ref_permohonan_berkas` int(5) DEFAULT NULL,
+  `sts_ada` int(1) DEFAULT NULL,
+  `sts_sftcopy` int(1) DEFAULT 0,
+  `scfile` varchar(250) DEFAULT NULL,
+  `keterangan` varchar(250) DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `created_uid` int(4) DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  `updated_uid` int(4) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_permohonan_berkas`
+--
+
+LOCK TABLES `t_permohonan_berkas` WRITE;
+/*!40000 ALTER TABLE `t_permohonan_berkas` DISABLE KEYS */;
+INSERT INTO `t_permohonan_berkas` VALUES (1,1,1,1,1,'217101000100104850-PT_ERACENTURYPARK.pdf','Valid','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(2,1,2,1,1,'','tes upload 1 mb lebih','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(3,1,3,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(4,1,4,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(5,1,5,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(6,1,6,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(7,1,7,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(8,1,8,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(9,1,9,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(10,1,10,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(11,1,11,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(12,1,12,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(13,1,13,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(14,1,14,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(15,1,15,0,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(16,1,16,0,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(17,1,17,1,0,'','','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(18,1,18,1,NULL,NULL,'telp dan email valid','2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(19,4,19,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(20,4,20,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(21,4,21,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(22,4,22,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(23,4,23,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(24,4,24,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(25,4,25,1,1,'217100400300120930_-_WINDI_RULI_ARI_ANTIKA.pdf','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(26,4,26,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(27,4,27,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(28,4,28,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(29,4,29,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(30,4,30,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(31,4,31,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(32,4,32,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(33,4,33,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(34,4,34,1,0,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(35,4,35,1,NULL,'','','2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(36,5,1,1,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(37,5,2,1,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(38,5,3,1,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(39,5,4,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(40,5,5,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(41,5,6,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(42,5,7,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(43,5,8,1,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(44,5,9,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(45,5,10,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(46,5,11,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(47,5,12,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(48,5,13,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(49,5,14,1,1,'217100400300120990_-_AGUS_SETIAWAN.pdf','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(50,5,15,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(51,5,16,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(52,5,17,0,0,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1),(53,5,18,1,NULL,'','','2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1);
+/*!40000 ALTER TABLE `t_permohonan_berkas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `t_permohonan_pengukuran`
+--
+
+DROP TABLE IF EXISTS `t_permohonan_pengukuran`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `t_permohonan_pengukuran` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `nm_perusahaan` varchar(250) DEFAULT NULL,
+  `propinsi` int(3) DEFAULT NULL,
+  `dati2` int(3) DEFAULT NULL,
+  `jns_permohonan` int(1) DEFAULT NULL,
+  `tgl_diperiksa` datetime DEFAULT NULL,
+  `diperiksa_oleh` int(5) DEFAULT NULL,
+  `is_complete` int(1) NOT NULL DEFAULT 0,
+  `sts_permohonan` int(1) NOT NULL DEFAULT 0,
+  `created_date` datetime DEFAULT NULL,
+  `created_uid` int(1) DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  `updated_uid` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `t_permohonan_pengukuran`
+--
+
+LOCK TABLES `t_permohonan_pengukuran` WRITE;
+/*!40000 ALTER TABLE `t_permohonan_pengukuran` DISABLE KEYS */;
+INSERT INTO `t_permohonan_pengukuran` VALUES (1,'PT Atlas Dinamika Persada',32,3203,1,NULL,NULL,0,0,'2023-08-12 13:18:03',1,'2023-08-12 14:34:04',1),(4,'PT Wenx Technology',51,5171,2,NULL,NULL,0,0,'2023-08-12 14:41:38',1,'2023-08-12 14:41:38',1),(5,'PT. Andara',14,1471,1,NULL,NULL,0,0,'2023-08-12 15:17:20',1,'2023-08-12 15:17:20',1);
+/*!40000 ALTER TABLE `t_permohonan_pengukuran` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `v_permohonan_berkas`
+--
+
+DROP TABLE IF EXISTS `v_permohonan_berkas`;
+/*!50001 DROP VIEW IF EXISTS `v_permohonan_berkas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `v_permohonan_berkas` (
+  `id` tinyint NOT NULL,
+  `permohonan_id` tinyint NOT NULL,
+  `ref_permohonan_berkas` tinyint NOT NULL,
+  `nm_berkas` tinyint NOT NULL,
+  `sts_ada` tinyint NOT NULL,
+  `sts_sftcopy` tinyint NOT NULL,
+  `scfile` tinyint NOT NULL,
+  `keterangan` tinyint NOT NULL,
+  `sts_scfile` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `v_permohonan_berkas`
+--
+
+/*!50001 DROP TABLE IF EXISTS `v_permohonan_berkas`*/;
+/*!50001 DROP VIEW IF EXISTS `v_permohonan_berkas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_permohonan_berkas` AS select `a`.`id` AS `id`,`a`.`permohonan_id` AS `permohonan_id`,`a`.`ref_permohonan_berkas` AS `ref_permohonan_berkas`,`b`.`nm_warkah` AS `nm_berkas`,`a`.`sts_ada` AS `sts_ada`,`a`.`sts_sftcopy` AS `sts_sftcopy`,`a`.`scfile` AS `scfile`,`a`.`keterangan` AS `keterangan`,`b`.`scfile` AS `sts_scfile` from (`t_permohonan_berkas` `a` left join `ref_permohonan_berkas` `b` on(`b`.`id` = `a`.`ref_permohonan_berkas`)) order by `a`.`id` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -261,4 +453,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-08 23:10:54
+-- Dump completed on 2023-08-12 15:20:50

@@ -2,24 +2,10 @@
      <div class="footer-inner">
          <div class="footer-content">
              <span class="bigger-120">
-                 <span class="blue bolder">Ace</span>
-                 Application &copy; 2013-<?php echo date('Y'); ?>
+                 &copy; <?php echo date('Y'); ?>
              </span>
 
              &nbsp; &nbsp;
-             <span class="action-buttons">
-                 <a href="#">
-                     <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                 </a>
-
-                 <a href="#">
-                     <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-                 </a>
-
-                 <a href="#">
-                     <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-                 </a>
-             </span>
          </div>
      </div>
  </div>
@@ -97,12 +83,7 @@
                  select: {
                      style: 'multi'
                  },
-                 'columnDefs': [{
-                     'targets': [3, 4, 5],
-                     /* column index */
-                     'orderable': false,
-                     /* true or false */
-                 }]
+
              });
 
          $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
@@ -311,6 +292,18 @@
              $('#scval' + dataid).val(0);
          }
      })
+
+     $('.btn-cancel').on('click', function() {
+         window.history.go(-1);
+     })
+
+     $("#pstb_in").submit(function() {
+         if (confirm("Apakah anda yakin ?")) {
+             return true;
+         } else {
+             return false;
+         }
+     });
  </script>
 
  <script type="text/javascript">

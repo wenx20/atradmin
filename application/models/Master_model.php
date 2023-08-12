@@ -24,4 +24,20 @@ class Master_model extends CI_Model
 		$lastid = $this->db->insert_id();
 		return $lastid;
 	}
+
+	function update_master($where, $paramTable, $data)
+	{
+		$this->db->where($where);
+		$this->db->update($paramTable, $data);
+
+		return $this->db->affected_rows();
+	}
+
+	function delete_master($value, $id, $paramTable)
+	{
+		$this->db->where($id, $value);
+		$this->db->delete($paramTable);
+
+		return $this->db->affected_rows();
+	}
 }

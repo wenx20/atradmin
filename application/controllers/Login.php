@@ -31,13 +31,17 @@ class Login extends CI_Controller
             if ($passValid) {
                 $get_id = $this->logmod->get_id($username, $passdb)->result();
                 foreach ($get_id as $val) {
+                    $id = $val->id;
                     $nip            =    $val->nip;
                     $username       =    $val->username;
                     $password       =    $val->password;
                     $type           =    $val->leveluser;
                     $blok           =    $val->blokir;
+                    $nama = $val->nama;
 
                     $data = array(
+                        'user_id' => $id,
+                        'user_nama' => $nama,
                         'user_nip'      => $nip,
                         'user_login'   => $username,
                         'user_pass' => $password,
@@ -72,8 +76,10 @@ class Login extends CI_Controller
             'departemen',
             'is_logged_in'
         );
-        */
         $this->session->unset_userdata($array_items);
+        */
+
+        $this->session->sess_destroy();
         $this->session->set_flashdata('msg', 'Anda Telah Signed Out!');
         redirect('login');
     }

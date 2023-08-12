@@ -14,11 +14,12 @@
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" role="form" action="<?= base_url('home/pstb_sv') ?>" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" role="form" action="<?= base_url('home/pstb_ed_sv') ?>" method="post" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda yakin ?');">
                 <div class="form-group">
                     <label class="col-md-2">Nama Perusahaan</label>
                     <div class="col-sm-9">
-                        <input name="nm_perusahaan" type="text" id="form-field-1-1" placeholder="Nama Perusahaan" class="form-control" value="<?= $pstb['nm_perusahaan'] ?>" />
+                        <input type="hidden" size="2" value="<?= $permohonan['id'] ?>" name="permohonanID">
+                        <input name="nm_perusahaan" type="text" id="form-field-1-1" class="form-control" value="<?= $permohonan['nm_perusahaan'] ?>" />
                     </div>
                 </div>
 
@@ -29,7 +30,7 @@
                             <option value="0">- Provinsi -</option>
                             <?php
                             foreach ($provinsi as $row) {
-                                echo '<option value="' . $row['KD_PROVINSI'] . '" ' . ($row['KD_PROVINSI'] == $pstb['propinsi'] ? 'selected' : '') . '>' . $row['NM_PROVINSI'] . '</option>';
+                                echo '<option value="' . $row['KD_PROVINSI'] . '" ' . ($row['KD_PROVINSI'] == $permohonan['propinsi'] ? 'selected' : '') . '>' . $row['NM_PROVINSI'] . '</option>';
                             }
                             ?>
                         </select>
@@ -66,29 +67,34 @@
                         ?>
                             <tr>
                                 <td>
-                                    <input type="text" value="<?= $w['id'] ?>" size="2" name="wrkID[]">
-                                    <?= $w['nm_warkah'] ?>
+                                    <input type="hidden" value="<?= $w['id'] ?>" size="2" name="wrkID[]">
+                                    <?= $w['nm_berkas'] ?>
                                 </td>
                                 <td style="text-align: center;">
                                     <label>
-                                        <input class="ace ace-switch ace-switch-6" onclick="stsberkas(<?= $w['ref_pstb_id'] ?>)" type="checkbox" <?= ($w['sts_warkah'] == 1 ? 'checked' : '') ?> />
+                                        <input class="ace ace-switch ace-switch-6" onclick="stsberkas(<?= $w['ref_permohonan_berkas'] ?>)" type="checkbox" <?= ($w['sts_ada'] == 1 ? 'checked' : '') ?> />
                                         <span class="lbl"></span>
-                                        <input type="text" size="2" name="stsberkas[]" id="stsberkas<?= $w['ref_pstb_id'] ?>" value="<?= $w['sts_warkah'] ?>" readonly>
+                                        <input type="hidden" size="2" name="stsberkas[]" id="stsberkas<?= $w['ref_permohonan_berkas'] ?>" value="<?= $w['sts_ada'] ?>" readonly>
                                     </label>
                                 </td>
                                 <td align="center">
-                                    <input type="checkbox" class="ace input-lg sftcopy" data-id="<?= $w['ref_pstb_id'] ?>" />
-                                    <span class="lbl bigger-120"></span>
-                                    <input type="text" size="2" name="sftcopy[]" id="scval<?= $w['ref_pstb_id'] ?>" value="<?= $w['sts_sftcopy'] ?>" readonly>
+                                    <?php if ($w['sts_scfile'] == 1) { ?>
+                                        <input type="checkbox" class="ace input-lg sftcopy" data-id="<?= $w['ref_permohonan_berkas'] ?>" <?= ($w['sts_sftcopy'] == 1 ? 'checked' : '') ?> />
+                                        <span class="lbl bigger-120"></span>
+                                        <input type="hidden" size="2" name="sftcopy[]" id="scval<?= $w['ref_permohonan_berkas'] ?>" value="<?= $w['sts_sftcopy'] ?>" readonly>
+                                    <?php } ?>
                                 </td>
                                 <td>
                                     <?php
-                                    if ($w['sts_sftcopy'] == 1) :
-                                        echo "[<a href=''>Lihat File</a>]";
-                                    endif;
+                                    if ($w['sts_scfile'] == 1) {
+                                        if ($w['sts_sftcopy'] == 1) :
+                                            echo "[<a href='" . base_url() . "uploads/" . $w['scfile'] . "' target='_blank'>Lihat File</a>]";
+                                        endif;
                                     ?>
 
-                                    <input type="file" id="id-input-file-2" name="scFile<?= $w['ref_pstb_id'] ?>" />
+                                        <input type="file" id="id-input-file-2" name="scFile<?= $w['id'] ?>" />
+                                        <input type="hidden" name="file_old[]" value="<?= $w['scfile'] ?>">
+                                    <?php } ?>
                                 </td>
 
                                 <td><textarea class="form-control" id="form-field-8" placeholder="Keterangan" name="keterangan[]"><?= $w['keterangan'] ?></textarea></td>
@@ -106,9 +112,9 @@
                             <i class="ace-icon fa fa-check bigger-110"></i>
                             Submit
                         </button>
-                        <button class="btn" type="reset">
+                        <button class="btn btn-cancel">
                             <i class="ace-icon fa fa-undo bigger-110"></i>
-                            Reset
+                            Cancel
                         </button>
                     </div>
                 </div>

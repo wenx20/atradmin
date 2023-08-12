@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" role="form" action="<?= base_url('home/pstb_sv') ?>" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" id="pstb_in" role="form" action="<?= base_url('home/pstb_sv') ?>" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="col-md-2">Nama Perusahaan</label>
                     <div class="col-sm-9">
@@ -72,12 +72,20 @@
                                     </label>
                                 </td>
                                 <td align="center">
-                                    <input type="checkbox" class="ace input-lg sftcopy" data-id="<?= $berkas['id'] ?>" />
-                                    <span class="lbl bigger-120"></span>
-                                    <input type="hidden" size="2" name="sftcopy[]" id="scval<?= $berkas['id'] ?>" value="0" readonly>
+                                    <?php if ($berkas['scfile'] == 1) { ?>
+                                        <input type="checkbox" class="ace input-lg sftcopy" data-id="<?= $berkas['id'] ?>" />
+                                        <span class="lbl bigger-120"></span>
+                                        <input type="hidden" size="2" name="sftcopy[]" id="scval<?= $berkas['id'] ?>" value="0" readonly>
+                                    <?php } ?>
                                 </td>
                                 <td>
-                                    <input type="file" id="id-input-file-2" name="scFile<?= $berkas['id'] ?>" />
+                                    <?php if ($berkas['scfile'] == 1) { ?>
+                                        <input type="file" id="id-input-file-2" name="scFile<?= $berkas['id'] ?>" />
+                                        <span class="help-inline" style="color: #696969;">
+                                            File maks. 1mb
+                                        </span>
+
+                                    <?php } ?>
                                 </td>
 
                                 <td><textarea class="form-control" id="form-field-8" placeholder="Keterangan" name="keterangan[]"></textarea></td>
@@ -89,35 +97,16 @@
                     </tbody>
                 </table>
 
-                <!-- 
-                    <div class="form-group">
-                    <label class="col-md-2">Kecamatan</label>
-                    <div class="col-sm-9">
-                        <select name="kec" id="kecamatan" class="form-control">
-                            <option>- kecamatan -</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-2">Kelurahan</label>
-                    <div class="col-sm-9">
-                        <select name="kel" type="text" id="kelurahan" class="form-control">
-                            <option>- Kelurahan -</option>
-                        </select>
-                    </div>
-                </div>
-                        -->
-
                 <div class="clearfix form-actions">
                     <div class="col-md-offset-3 col-md-9">
-                        <button type="submit" class="btn btn-info">
+                        <input type="hidden" size="2" value="<?= $jns_permohonan ?>" name="jns_permohonan">
+                        <button type="submit" class="btn btn-info" onClick="return confirmSubmit()">
                             <i class="ace-icon fa fa-check bigger-110"></i>
                             Submit
                         </button>
-                        <button class="btn" type="reset">
+                        <button class="btn btn-cancel">
                             <i class="ace-icon fa fa-undo bigger-110"></i>
-                            Reset
+                            Cancel
                         </button>
                     </div>
                 </div>

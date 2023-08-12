@@ -1,43 +1,12 @@
 <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
-    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-            <button class="btn btn-success">
-                <i class="ace-icon fa fa-signal"></i>
-            </button>
-
-            <button class="btn btn-info">
-                <i class="ace-icon fa fa-pencil"></i>
-            </button>
-
-            <button class="btn btn-warning">
-                <i class="ace-icon fa fa-users"></i>
-            </button>
-
-            <button class="btn btn-danger">
-                <i class="ace-icon fa fa-cogs"></i>
-            </button>
-        </div>
-
-        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-            <span class="btn btn-success"></span>
-
-            <span class="btn btn-info"></span>
-
-            <span class="btn btn-warning"></span>
-
-            <span class="btn btn-danger"></span>
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts" style="background-color: #e1e1e1;">
+        <div style="text-align: left; margin-left: 25px; margin-top: 5px; margin-bottom: 5px;">
+            Welcome, <br />
+            <?= $_SESSION['user_nama'] ?>
         </div>
     </div><!-- /.sidebar-shortcuts -->
 
     <ul class="nav nav-list">
-        <li class="">
-            <a href="#">
-                <i class="menu-icon fa fa-tachometer"></i>
-                <span class="menu-text"> Dashboard </span>
-            </a>
-
-            <b class="arrow"></b>
-        </li>
 
         <li class="active open">
             <a href="#" class="dropdown-toggle">
