@@ -176,9 +176,13 @@ class Home extends CI_Controller
         $copy = $this->input->post('sftcopy');
         $keterangan = $this->input->post('keterangan');
         $jns_permohonan = $this->input->post('jns_permohonan');
+        $luas = $this->input->post('luas_permohonan');
+        $no_permohonan = date('dmY') . rand(1231, 7879);
 
         $data1 = [
+            'no_permohonan' => $no_permohonan,
             'nm_perusahaan' => $perusahaan,
+            'luas_permohonan' => $luas,
             'propinsi' => $propinsi,
             'dati2' => $dati2,
             'jns_permohonan' => $jns_permohonan,
@@ -260,9 +264,11 @@ class Home extends CI_Controller
         $copy = $this->input->post('sftcopy');
         $keterangan = $this->input->post('keterangan');
         $scfile_old = $this->input->post('file_old');
+        $luas = $this->input->post('luas_permohonan');
 
         $data1 = [
             'nm_perusahaan' => $perusahaan,
+            'luas_permohonan' => $luas,
             'propinsi' => $propinsi,
             'dati2' => $dati2,
             'updated_date' => date('Y-m-d H:i:s'),
@@ -302,9 +308,9 @@ class Home extends CI_Controller
     {
         $id = $this->uri->segment('3');
 
-        $delete = $this->mastermod->delete_master($id, 'pstb_id', 't_permohonan_berkas');
+        $delete = $this->mastermod->delete_master($id, 'permohonan_id', 't_permohonan_berkas');
         if ($delete) {
-            $del = $this->mastermod->delete_master($id, 'id', 'tbl_permohonan_pengukuran');
+            $del = $this->mastermod->delete_master($id, 'id', 't_permohonan_pengukuran');
 
             if ($del) {
                 $this->session->set_flashdata('sukses_input', '<i class="ace-icon fa fa-check" style="font-weight: bold;"></i> Well done! Delete data successfull');

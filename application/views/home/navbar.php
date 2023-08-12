@@ -14,7 +14,7 @@
             <a href="index.html" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    DIREKTORAT PENGUKURAN DAN PEMETAAN KADASTRAL | ATRBPN
+                    APLIKASI ALUR BERKAS | DIREKTORAT PENGUKURAN DAN PEMETAAN KADASTRAL
                 </small>
             </a>
         </div>

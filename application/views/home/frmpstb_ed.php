@@ -16,13 +16,24 @@
             <!-- PAGE CONTENT BEGINS -->
             <form class="form-horizontal" role="form" action="<?= base_url('home/pstb_ed_sv') ?>" method="post" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda yakin ?');">
                 <div class="form-group">
+                    <label class="col-md-2">No. Permohonan</label>
+                    <div class="col-sm-3">
+                        <input name="no_permohonan" type="text" id="form-field-1-1" value="<?= $permohonan['no_permohonan'] ?>" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-2">Nama Perusahaan</label>
                     <div class="col-sm-9">
                         <input type="hidden" size="2" value="<?= $permohonan['id'] ?>" name="permohonanID">
                         <input name="nm_perusahaan" type="text" id="form-field-1-1" class="form-control" value="<?= $permohonan['nm_perusahaan'] ?>" />
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label class="col-md-2">Luas Permohonan</label>
+                    <div class="col-sm-2">
+                        <input name="luas_permohonan" type="text" id="form-field-1-1" value="<?= $permohonan['luas_permohonan'] ?>" class="form-control" />
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-md-2">Provinsi</label>
                     <div class="col-sm-3">

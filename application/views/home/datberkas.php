@@ -29,8 +29,10 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>No. Permohonan</th>
                         <th>Tgl. Input</th>
                         <th>Nama Perusahaan </th>
+                        <th>Luas</th>
                         <th>Kelengkapan Warkah</th>
                         <th>Jenis Permohonan</th>
                         <th>Status Permohonan</th>
@@ -45,8 +47,10 @@
                     ?>
                         <tr>
                             <td><?= $no ?></td>
+                            <td><?= $row['no_permohonan'] ?></td>
                             <td><?= $row['created_date'] ?></td>
                             <td><?= $row['nm_perusahaan'] ?></td>
+                            <td><?= $row['luas_permohonan'] ?></td>
                             <td><?= $row['is_complete'] ?></td>
                             <td><?= ($row['jns_permohonan'] == 1 ? 'Baru' : 'Perpanjangan') ?></td>
                             <td><?= $row['sts_permohonan'] ?></td>

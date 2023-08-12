@@ -16,12 +16,23 @@
             <!-- PAGE CONTENT BEGINS -->
             <form class="form-horizontal" id="pstb_in" role="form" action="<?= base_url('home/pstb_sv') ?>" method="post" enctype="multipart/form-data">
                 <div class="form-group">
+                    <label class="col-md-2">No. Permohonan</label>
+                    <div class="col-sm-3">
+                        <input name="no_permohonan" type="text" id="form-field-1-1" placeholder="Generate by system" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-2">Nama Perusahaan</label>
                     <div class="col-sm-9">
                         <input name="nm_perusahaan" type="text" id="form-field-1-1" placeholder="Nama Perusahaan" class="form-control" />
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label class="col-md-2">Luas Permohonan</label>
+                    <div class="col-sm-2">
+                        <input name="luas_permohonan" type="text" id="form-field-1-1" placeholder="Luas Permohonan" class="form-control" />
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-md-2">Provinsi</label>
                     <div class="col-sm-3">
@@ -82,7 +93,7 @@
                                     <?php if ($berkas['scfile'] == 1) { ?>
                                         <input type="file" id="id-input-file-2" name="scFile<?= $berkas['id'] ?>" />
                                         <span class="help-inline" style="color: #696969;">
-                                            File maks. 1mb
+                                            File maks. 1mb (png, jpg, pdf)
                                         </span>
 
                                     <?php } ?>
