@@ -4,8 +4,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>atrbpn</title>
-    <link rel="shortcut icon" href="<?= base_url() ?>assets/img/favicon.ico" type="image/x-icon" />
+    <title>Blank Page - Ace Admin</title>
 
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -36,23 +35,22 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/daterangepicker.min.css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/select2.min.css" />
 
-    <script src="<?= base_url() ?>assets/js/ace-extra.min.js"></script>
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/rowReorder.dataTables.min.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/responsive.dataTables.min.css" />
+
+    <script src="assets/js/ace-extra.min.js"></script>
 </head>
 
 <body class="no-skin">
-    <?php include "navbar.php";
-    ?>
+    <?php include "navbar.php"; ?>
 
     <div class="main-container ace-save-state" id="main-container">
-        <?php include "sidebar.php";
-        ?>
+        <?php include "sidebar.php"; ?>
 
         <div class="main-content">
             <div class="main-content-inner">
-                <?php //include "breadcumb.php"; 
-                ?>
+                <?php include "breadcumb.php"; ?>
                 <div class="page-content">
                     <div class="row">
                         <div class="col-xs-12">

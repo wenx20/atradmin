@@ -1,13 +1,17 @@
 <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
-    <div class="sidebar-shortcuts" id="sidebar-shortcuts" style="background-color: #e1e1e1;">
-        <div style="text-align: left; margin-left: 25px; margin-top: 5px; margin-bottom: 5px;">
-            Welcome, <br />
+    <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+        <span class="menu-text" style="padding-left:20px;">
+            Welcome,
             <?= $_SESSION['user_nama'] ?>
-        </div>
-    </div><!-- /.sidebar-shortcuts -->
+        </span>
+    </div>
 
+    <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+        <span class="menu-text">
+            <i class="menu-icon fa fa-users"></i>
+        </span>
+    </div>
     <ul class="nav nav-list">
-
         <li class="active open">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-desktop"></i>
@@ -21,7 +25,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="active">
+                <li class="">
                     <a href="<?= base_url('home/loketberkas') ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Loket Pemberkasan
@@ -30,22 +34,92 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="">
-                    <a href="<?= base_url('home/loketadmin') ?>">
+                <li class="active open">
+                    <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Loket Administrasi
+                        <b class="arrow fa fa-angle-down"></b>
                     </a>
 
                     <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                SPS (Surat Perintah Setor Awal)
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Surat Tugas & Pengantar
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Nota Dinas
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                SBS (Surat Bukti Setor Awal)
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Expose Rencana
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Checklist Berkas & Upload
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="">
-                    <a href="<?= base_url('home/loketarsip') ?>">
+                    <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Loket Pengarsipan
+                        <b class="arrow fa fa-angle-down"></b>
                     </a>
 
                     <b class="arrow"></b>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Hitung Ulang Biaya
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Undangan Expose Hasil
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>

@@ -25,7 +25,7 @@
             <div class="table-header">
                 Data Berkas Permohonan
             </div>
-            <table id="dynamic-table-b" class="table table-striped table-bordered table-hover table-responsive">
+            <table id="dynamic-table" class="table table-striped table-bordered table-hover table-responsive">
                 <thead>
                     <tr>
                         <th>No</th>

@@ -2,10 +2,24 @@
      <div class="footer-inner">
          <div class="footer-content">
              <span class="bigger-120">
-                 &copy; <?php echo date('Y'); ?>
+                 <span class="blue bolder">Ace</span>
+                 Application &copy; 2013-<?php echo date('Y'); ?>
              </span>
 
              &nbsp; &nbsp;
+             <span class="action-buttons">
+                 <a href="#">
+                     <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                 </a>
+
+                 <a href="#">
+                     <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                 </a>
+
+                 <a href="#">
+                     <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                 </a>
+             </span>
          </div>
      </div>
  </div>
@@ -67,12 +81,89 @@
  <script src="<?= base_url() ?>assets/js/buttons.colVis.min.js"></script>
  <script src="<?= base_url() ?>assets/js/dataTables.select.min.js"></script>
 
+ <script src="<?= base_url() ?>assets/js/dataTables.rowReorder.min.js"></script>
+ <script src="<?= base_url() ?>assets/js/dataTables.responsive.min.js"></script>
+
+ <!-- DropDown -->
+ <script type="text/javascript">
+     $(document).ready(function() {
+         $('#provinsi').change(function() {
+             var provinsi_id = $('#provinsi').val();
+             if (provinsi_id != '') {
+                 $.ajax({
+                     url: "<?php echo base_url(); ?>home/getdati2",
+                     method: "POST",
+                     data: {
+                         provinsi_id: provinsi_id
+                     },
+                     success: function(data) {
+                         $('#dati2').html(data);
+                     }
+                 });
+             } else {
+                 $('#dati2').html('<option value="">Select Dati2</option>');
+             }
+         });
+
+         $('#dati2').change(function() {
+             var dati2_id = $('#dati2').val();
+             if (dati2_id != '') {
+                 $.ajax({
+                     url: "<?php echo base_url(); ?>home/getkec",
+                     method: "POST",
+                     data: {
+                         dati2_id: dati2_id
+                     },
+                     success: function(data) {
+                         $('#kecamatan').html(data);
+                     }
+                 });
+             } else {
+                 $('#kecamatan').html('<option value="">Select Kecamatan</option>');
+             }
+         });
+
+         $('#kecamatan').change(function() {
+             var kecamatan_id = $('#kecamatan').val();
+             if (kecamatan_id != '') {
+                 $.ajax({
+                     url: "<?php echo base_url(); ?>home/getkel",
+                     method: "POST",
+                     data: {
+                         kecamatan_id: kecamatan_id
+                     },
+                     success: function(data) {
+                         $('#kelurahan').html(data);
+                     }
+                 });
+             } else {
+                 $('#kelurahan').html('<option value="">Select Kelurahan</option>');
+             }
+         });
+
+     });
+ </script>
+
+ <script type="text/javascript">
+     //datepicker plugin
+     //link
+     $('.date-picker').datepicker({
+             autoclose: true,
+             todayHighlight: true
+         })
+         //show datepicker when clicking on the icon
+         .next().on(ace.click_event, function() {
+             $(this).prev().focus();
+         });
+ </script>
+
  <!-- inline scripts related to this page -->
  <script type="text/javascript">
      jQuery(function($) {
          //initiate dataTables plugin
          var myTable =
-             $('#dynamic-table-b')
+             $('#dynamic-table')
+             //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
              .DataTable({
                  rowReorder: {
                      selector: 'td:nth-child(2)'
@@ -82,8 +173,7 @@
                  "aaSorting": [],
                  select: {
                      style: 'multi'
-                 },
-
+                 }
              });
 
          $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
@@ -252,60 +342,39 @@
          });
          /***************/
 
-     });
-
-     $('#provinsi').on('change', function() {
-         var provinsi_id = $('#provinsi').val();
-         if (provinsi_id == 0) {
-             $('#dati2').html('<option value="">- Dati2 -</option>');
-         } else {
-
-             $.ajax({
-                 url: "<?php echo base_url(); ?>home/getdati2",
-                 method: "POST",
-                 data: {
-                     provinsi_id: provinsi_id
-                 },
-                 success: function(data) {
-                     $('#dati2').html(data);
-                 }
-             });
+         function stsberkas(idberkas) {
+             var no_berkas = $('#stsberkas' + idberkas).val();
+             if (no_berkas == 0) {
+                 $('#stsberkas' + idberkas).val(1);
+             } else {
+                 $('#stsberkas' + idberkas).val(0);
+             }
          }
-     });
 
-     function stsberkas(idberkas) {
-         var no_berkas = $('#stsberkas' + idberkas).val();
-         if (no_berkas == 0) {
-             $('#stsberkas' + idberkas).val(1);
-         } else {
-             $('#stsberkas' + idberkas).val(0);
-         }
-     }
+         $('.sftcopy').on('click', function() {
+             var dataid = $(this).data('id');
+             var scval = $('#scval' + dataid).val();
 
-     $('.sftcopy').on('click', function() {
-         var dataid = $(this).data('id');
-         var scval = $('#scval' + dataid).val();
+             if (scval == 0) {
+                 $('#scval' + dataid).val(1);
+             } else {
+                 $('#scval' + dataid).val(0);
+             }
+         })
 
-         if (scval == 0) {
-             $('#scval' + dataid).val(1);
-         } else {
-             $('#scval' + dataid).val(0);
-         }
+         $('.btn-cancel').on('click', function() {
+             window.history.go(-1);
+         })
+
+         $("#pstb_in").submit(function() {
+             if (confirm("Apakah anda yakin ?")) {
+                 return true;
+             } else {
+                 return false;
+             }
+         });
      })
-
-     $('.btn-cancel').on('click', function() {
-         window.history.go(-1);
-     })
-
-     $("#pstb_in").submit(function() {
-         if (confirm("Apakah anda yakin ?")) {
-             return true;
-         } else {
-             return false;
-         }
-     });
  </script>
-
  <script type="text/javascript">
      $('#id-input-file-1 , #id-input-file-2').ace_file_input({
          no_file: 'No File ...',
@@ -320,70 +389,32 @@
          //
      });
  </script>
- <!-- Referensi Wilayah -->
- <script type="text/javascript">
-     $(document).ready(function() {
-         /*
-          $('#provinsi').change(function() {
-              var provinsi_id = $('#provinsi').val();
-              alert(provinsi_id);
-              if (provinsi_id != '') {
-                  $.ajax({
-                      url: "<?php echo base_url(); ?>home/getdati2",
-                      method: "POST",
-                      data: {
-                          provinsi_id: provinsi_id
-                      },
-                      success: function(data) {
-                          //  $('#dati2').html(data);
 
-                      }
-                  });
-              } else {
-                  $('#dati2').html('<option value="">Select Dati2</option>');
-              }
-          });
-
-          
-          $('#dati2').change(function() {
-              var dati2_id = $('#dati2').val();
-              if (dati2_id != '') {
-                  $.ajax({
-                      url: "<?php echo base_url(); ?>home/getkec",
-                      method: "POST",
-                      data: {
-                          dati2_id: dati2_id
-                      },
-                      success: function(data) {
-                          $('#kecamatan').html(data);
-                      }
-                  });
-              } else {
-                  $('#kecamatan').html('<option value="">Select Kecamatan</option>');
-              }
-          });
-
-          $('#kecamatan').change(function() {
-              var kecamatan_id = $('#kecamatan').val();
-              if (kecamatan_id != '') {
-                  $.ajax({
-                      url: "<?php echo base_url(); ?>home/getkel",
-                      method: "POST",
-                      data: {
-                          kecamatan_id: kecamatan_id
-                      },
-                      success: function(data) {
-                          $('#kelurahan').html(data);
-                      }
-                  });
-              } else {
-                  $('#kelurahan').html('<option value="">Select Kelurahan</option>');
-              }
-          });
-          */
-     });
+ <script language="javascript" type="text/javascript">
+     function checkField(formObj, fldObj) {
+         for (i = 0; i < formObj.length; i++)
+             if (formObj[i] == fldObj)
+                 if (fldObj.value.length == parseInt(fldObj.maxLength)) {
+                     if (i < formObj.length - 1)
+                         fldObj = formObj[++i];
+                     fldObj.focus();
+                 }
+     }
  </script>
-
+ <!-- Kapital Font -->
+ <script language="javascript" type="text/javascript">
+     function kapital(obj) {
+         obj.value = obj.value.toUpperCase();
+     }
+ </script>
+ <!-- Just Number Only -->
+ <script language="javascript" type="text/javascript">
+     function angka(e) {
+         if (!/^[0-9]+$/.test(e.value)) {
+             e.value = e.value.substring(0, e.value.length - 1);
+         }
+     }
+ </script>
  </body>
 
  </html>

@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Login Page</title>
+    <title>Login Page - Ace Admin</title>
 
     <meta name="description" content="User login page" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -46,9 +46,9 @@
                                         <div class="center">
                                             <h1>
                                                 <i class="ace-icon fa fa-leaf green"></i>
-                                                <span class="blue">Aplikasi Alur Berkas</span>
+                                                <span class="blue">ATR/BPN</span>
                                             </h1>
-                                            <p>DIREKTORAT PENGUKURAN DAN PEMETAAN KADASTRAL</p>
+                                            <h4>Aplikasi Alur Berkas</h4>
                                         </div>
                                         <div class="space-6"></div>
                                         <div class="position-relative">
