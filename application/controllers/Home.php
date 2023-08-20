@@ -177,12 +177,24 @@ class Home extends CI_Controller
         $keterangan = $this->input->post('keterangan');
         $jns_permohonan = $this->input->post('jns_permohonan');
         $luas = $this->input->post('luas_permohonan');
+        $tgl_permohonan = $this->input->post('tgl_permohonan');
+        $halpermohonan = $this->input->post('halpermohonan');
+        $kategori_lahan = $this->input->post('kategori_lahan');
         $no_permohonan = date('dmY') . rand(1231, 7879);
+
+        if (preg_match("/,/i", $luas)) {
+            $luaspermohonan = str_replace(',', '.', $luas);
+        } else {
+            $luaspermohonan = $luas;
+        }
 
         $data1 = [
             'no_permohonan' => $no_permohonan,
+            'tgl_permohonan' => date("Y-m-d", strtotime($tgl_permohonan)),
+            'perihal_permohonan' => $halpermohonan,
+            'kategori_lahan' => $kategori_lahan,
             'nm_perusahaan' => $perusahaan,
-            'luas_permohonan' => $luas,
+            'luas_permohonan' => $luaspermohonan,
             'propinsi' => $propinsi,
             'dati2' => $dati2,
             'jns_permohonan' => $jns_permohonan,
@@ -265,10 +277,22 @@ class Home extends CI_Controller
         $keterangan = $this->input->post('keterangan');
         $scfile_old = $this->input->post('file_old');
         $luas = $this->input->post('luas_permohonan');
+        $tgl_permohonan = $this->input->post('tgl_permohonan');
+        $halpermohonan = $this->input->post('halpermohonan');
+        $kategori_lahan = $this->input->post('kategori_lahan');
+
+        if (preg_match("/,/i", $luas)) {
+            $luaspermohonan = str_replace(',', '.', $luas);
+        } else {
+            $luaspermohonan = $luas;
+        }
 
         $data1 = [
             'nm_perusahaan' => $perusahaan,
-            'luas_permohonan' => $luas,
+            'luas_permohonan' => $luaspermohonan,
+            'tgl_permohonan' => date("Y-m-d", strtotime($tgl_permohonan)),
+            'perihal_permohonan' => $halpermohonan,
+            'kategori_lahan' => $kategori_lahan,
             'propinsi' => $propinsi,
             'dati2' => $dati2,
             'updated_date' => date('Y-m-d H:i:s'),

@@ -18,6 +18,19 @@ class Master_model extends CI_Model
 		return $this->db->get();
 	}
 
+	function get_master_order($paramTable, $paramSelect, $condition, $paramOrder, $paramType = 'select',  $paramCon = 'where')
+	{
+		$this->db->$paramType($paramSelect);
+		$this->db->from($paramTable);
+		if ($condition) {
+			foreach ($condition as $c) {
+				$this->db->$paramCon($c[0], $c[1]);
+			}
+		}
+		$this->db->order_by($paramOrder);
+		return $this->db->get();
+	}
+
 	function insert_master($paramTable, $data)
 	{
 		$this->db->insert($paramTable, $data);

@@ -65,8 +65,10 @@
  <script src="<?= base_url() ?>assets/js/jquery.ui.touch-punch.min.js"></script>
  <script src="<?= base_url() ?>assets/js/jquery.gritter.min.js"></script>
  <script src="<?= base_url() ?>assets/js/bootstrap-datepicker.min.js"></script>
+ <script src="<?= base_url() ?>assets/js/bootstrap-timepicker.min.js"></script>
  <script src="<?= base_url() ?>assets/js/chosen.jquery.min.js"></script>
  <script src="<?= base_url() ?>assets/js/select2.min.js"></script>
+
  <script src="<?= base_url() ?>assets/js/spinbox.min.js"></script>
  <script src="<?= base_url() ?>assets/js/bootstrap-editable.min.js"></script>
  <script src="<?= base_url() ?>assets/js/ace-editable.min.js"></script>
@@ -81,7 +83,6 @@
  <script src="<?= base_url() ?>assets/js/buttons.colVis.min.js"></script>
  <script src="<?= base_url() ?>assets/js/dataTables.select.min.js"></script>
 
- <script src="<?= base_url() ?>assets/js/dataTables.rowReorder.min.js"></script>
  <script src="<?= base_url() ?>assets/js/dataTables.responsive.min.js"></script>
 
  <!-- DropDown -->
@@ -141,6 +142,120 @@
              }
          });
 
+         if (!ace.vars['touch']) {
+             $('.chosen-select').chosen({
+                 allow_single_deselect: true
+             });
+             //resize the chosen on window resize
+
+             $(window)
+                 .off('resize.chosen')
+                 .on('resize.chosen', function() {
+                     $('.chosen-select').each(function() {
+                         var $this = $(this);
+                         $this.next().css({
+                             'width': $this.parent().width()
+                         });
+                     })
+                 }).trigger('resize.chosen');
+             //resize chosen on sidebar collapse/expand
+             $(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+                 if (event_name != 'sidebar_collapsed') return;
+                 $('.chosen-select').each(function() {
+                     var $this = $(this);
+                     $this.next().css({
+                         'width': $this.parent().width()
+                     });
+                 })
+             });
+         }
+
+         $('#timepicker1').timepicker({
+             minuteStep: 1,
+             showSeconds: true,
+             showMeridian: false,
+             disableFocus: true,
+             icons: {
+                 up: 'fa fa-chevron-up',
+                 down: 'fa fa-chevron-down'
+             }
+         }).on('focus', function() {
+             $('#timepicker1').timepicker('showWidget');
+         }).next().on(ace.click_event, function() {
+             $(this).prev().focus();
+         });
+
+         $(".add-more").click(function() {
+             var html = $(".copy").html();
+             $(".after-add-more").after(html);
+         });
+
+         // saat tombol remove dklik control group akan dihapus 
+         $(document).on("click", ".btn-remove", function(e) {
+             e.preventDefault();
+             $(this).parents(".control-group").remove();
+         });
+
+         //select2
+         $('.select2').css('width', '430px').select2({
+             allowClear: true
+         })
+     });
+
+     $('.cg-remove').on('click', function(e) {
+         e.preventDefault();
+         var id = $(this).data('id');
+         $('.control-group' + id).remove();
+     })
+
+
+     function stsberkas(idberkas) {
+         var no_berkas = $('#stsberkas' + idberkas).val();
+         if (no_berkas == 0) {
+             $('#stsberkas' + idberkas).val(1);
+         } else {
+             $('#stsberkas' + idberkas).val(0);
+         }
+     }
+
+     $('.sftcopy').on('click', function() {
+         var dataid = $(this).data('id');
+         var scval = $('#scval' + dataid).val();
+
+         if (scval == 0) {
+             $('#scval' + dataid).val(1);
+         } else {
+             $('#scval' + dataid).val(0);
+         }
+     })
+
+     $('.btn-cancel').on('click', function() {
+         window.history.go(-1);
+     })
+
+     $("#pstb_in").submit(function() {
+         if (confirm("Apakah anda yakin ?")) {
+             return true;
+         } else {
+             return false;
+         }
+     });
+
+     $('.sugaspar-action').change(function() {
+         var optionVal = $(this).children("option:selected").val();
+         const myVal = optionVal.split('|');
+         if (myVal[0] == 0) {
+             return false;
+         } else if (myVal[0] == 5) {
+             var del = confirm("Apakah anda yakin ?");
+             if (del) {
+                 window.location.href = myVal[1];
+             } else {
+                 return false;
+             }
+         } else {
+             window.location.href = myVal[1];
+         }
      });
  </script>
 
@@ -342,37 +457,6 @@
          });
          /***************/
 
-         function stsberkas(idberkas) {
-             var no_berkas = $('#stsberkas' + idberkas).val();
-             if (no_berkas == 0) {
-                 $('#stsberkas' + idberkas).val(1);
-             } else {
-                 $('#stsberkas' + idberkas).val(0);
-             }
-         }
-
-         $('.sftcopy').on('click', function() {
-             var dataid = $(this).data('id');
-             var scval = $('#scval' + dataid).val();
-
-             if (scval == 0) {
-                 $('#scval' + dataid).val(1);
-             } else {
-                 $('#scval' + dataid).val(0);
-             }
-         })
-
-         $('.btn-cancel').on('click', function() {
-             window.history.go(-1);
-         })
-
-         $("#pstb_in").submit(function() {
-             if (confirm("Apakah anda yakin ?")) {
-                 return true;
-             } else {
-                 return false;
-             }
-         });
      })
  </script>
  <script type="text/javascript">

@@ -25,7 +25,7 @@
             <b class="arrow"></b>
 
             <ul class="submenu">
-                <li class="">
+                <li class="active">
                     <a href="<?= base_url('home/loketberkas') ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Loket Pemberkasan
@@ -34,7 +34,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="active open">
+                <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Loket Administrasi
@@ -44,15 +44,15 @@
                     <b class="arrow"></b>
                     <ul class="submenu">
                         <li class="">
-                            <a href="#">
+                            <a href="<?= base_url() ?>administrasi/spsawal">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                SPS (Surat Perintah Setor Awal)
+                                SPS (Surat Perintah Setor) Awal
                             </a>
 
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="#">
+                            <a href="<?= base_url() ?>administrasi/sugaspar">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Surat Tugas & Pengantar
                             </a>
@@ -60,7 +60,7 @@
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="#">
+                            <a href="<?= base_url() ?>administrasi/nodin">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Nota Dinas
                             </a>
@@ -68,22 +68,22 @@
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="#">
+                            <a href="<?= base_url() ?>administrasi/sbs">
                                 <i class="menu-icon fa fa-caret-right"></i>
-                                SBS (Surat Bukti Setor Awal)
+                                SBS (Surat Bukti Setor) Awal
                             </a>
 
                             <b class="arrow"></b>
                         </li>
                         <li class="">
-                            <a href="#">
+                            <a href="<?= base_url('administrasi/expose') ?>">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Expose Rencana
                             </a>
 
                             <b class="arrow"></b>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="#">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Checklist Berkas & Upload

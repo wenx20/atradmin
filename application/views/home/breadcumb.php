@@ -9,7 +9,7 @@
             <a href="#">Other Pages</a>
         </li>
         <li class="active">Blank Page</li>
-    </ul><!-- /.breadcrumb -->
+    </ul><!-- /.breadcrumb --
 
     <div class="nav-search" id="nav-search">
         <form class="form-search">

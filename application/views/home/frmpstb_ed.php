@@ -20,6 +20,21 @@
                     <div class="col-sm-3">
                         <input name="no_permohonan" type="text" id="form-field-1-1" value="<?= $permohonan['no_permohonan'] ?>" class="form-control" readonly />
                     </div>
+                    <label class="col-md-2 text-right">Tgl. Permohonan </label>
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" name="tgl_permohonan" value="<?= $permohonan['tgl_permohonan'] ?>" />
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar bigger-110"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2">Perihal Permohonan</label>
+                    <div class="col-sm-9">
+                        <input name="halpermohonan" type="text" id="form-field-1-1" placeholder="Perihal Permohonan" class="form-control" value="<?= $permohonan['perihal_permohonan'] ?>" />
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2">Nama Perusahaan</label>
@@ -32,6 +47,13 @@
                     <label class="col-md-2">Luas Permohonan</label>
                     <div class="col-sm-2">
                         <input name="luas_permohonan" type="text" id="form-field-1-1" value="<?= $permohonan['luas_permohonan'] ?>" class="form-control" />
+                    </div>
+                    <label class="col-md-2 text-right">Kategori Bidang Lahan</label>
+                    <div class="col-sm-2">
+                        <select name="kategori_lahan" class="form-control">
+                            <option value="pertanian" <?= ($permohonan['kategori_lahan'] == 'pertanian' ? 'selected' : '') ?>>Pertanian</option>
+                            <option value="nonpertanian" <?= ($permohonan['kategori_lahan'] == 'nonpertanian' ? 'selected' : '') ?>>Non Pertanian</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
